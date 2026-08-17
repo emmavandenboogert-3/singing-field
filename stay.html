@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stay in the field — join The Singing Field email list for upcoming circles, new music, and field notes.">
+  <title>Stay in the Field — The Singing Field</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <img src="images/logo-mark.png" alt="" class="nav-mark" aria-hidden="true"
+             onerror="this.style.display='none'">
+        <span class="nav-brand-name">The Singing Field</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="about.html">About</a></li>
+        <li><a href="listen.html">Listen</a></li>
+        <li><a href="stay.html" class="active">Stay</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-drawer" aria-hidden="true">
+      <a href="about.html">About</a>
+      <a href="listen.html">Listen</a>
+      <a href="stay.html" class="active">Stay</a>
+    </div>
+  </nav>
+
+  <!-- ── Stay in the Field ── -->
+  <section class="stay-section">
+    <div class="stay-glow" aria-hidden="true"></div>
+    <div class="section-inner narrow text-center">
+
+      <img src="images/logo-mark.png" alt="" class="stay-mark" aria-hidden="true"
+           onerror="this.style.display='none'">
+
+      <h1 class="stay-heading">Stay in the Field</h1>
+      <p class="lead">Receive news of upcoming circles, new music, and field notes from wherever we are singing in the world.</p>
+      <p class="stay-verse">
+        "We sing, for all that is lost,<br>
+        keeping it in our hearts.<br>
+        We sing, for all that will be.<br>
+        Through the shattering storms,<br>
+        light and free."
+      </p>
+
+      <form class="signup-form" id="signupForm" novalidate>
+        <div class="signup-row">
+          <label for="emailInput" class="sr-only">Your email address</label>
+          <input
+            type="email"
+            id="emailInput"
+            name="email_address"
+            placeholder="Your email address"
+            required
+            autocomplete="email">
+          <button type="submit" class="btn btn-primary">Join</button>
+        </div>
+        <p class="form-feedback" id="formFeedback" role="alert" aria-live="polite"></p>
+      </form>
+
+      <p class="form-note">We're looking forward to sing with you.</p>
+
+      <div class="stay-divider" aria-hidden="true"></div>
+
+      <p class="stay-also">You can also find the field here:</p>
+      <div class="stay-links">
+        <a href="https://www.instagram.com/the_singing_field/"
+           target="_blank" rel="noopener noreferrer" class="stay-social-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+          </svg>
+          Instagram
+        </a>
+        <a href="https://hipsy.nl/emma-van-den-boogert"
+           target="_blank" rel="noopener noreferrer" class="stay-social-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Hipsy
+        </a>
+        <a href="https://open.spotify.com/album/55nY6A8MnwEffHbQ0SXjB8"
+           target="_blank" rel="noopener noreferrer" class="stay-social-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M7 9.5c2.5-1 7-1 9.5 0M7.5 12.5c2-0.8 5.5-0.8 7.5 0M8.5 15.5c1.5-0.6 4-0.6 5.5 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Spotify
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-name">The Singing Field</p>
+      <nav class="footer-nav" aria-label="Footer links">
+        <a href="about.html">About</a>
+        <a href="listen.html">Listen</a>
+        <a href="stay.html">Stay</a>
+        <a href="https://www.instagram.com/the_singing_field/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://open.spotify.com/album/55nY6A8MnwEffHbQ0SXjB8" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="https://hipsy.nl/emma-van-den-boogert" target="_blank" rel="noopener noreferrer">Hipsy</a>
+      </nav>
+      <p class="footer-copy">© 2026 The Singing Field</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

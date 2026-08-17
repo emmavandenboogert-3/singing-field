@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Listen to The Singing Field — music on Spotify, videos on Instagram and YouTube.">
+  <title>Listen — The Singing Field</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <img src="images/logo-mark.png" alt="" class="nav-mark" aria-hidden="true"
+             onerror="this.style.display='none'">
+        <span class="nav-brand-name">The Singing Field</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="about.html">About</a></li>
+        <li><a href="listen.html" class="active">Listen</a></li>
+        <li><a href="stay.html">Stay</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-drawer" aria-hidden="true">
+      <a href="about.html">About</a>
+      <a href="listen.html" class="active">Listen</a>
+      <a href="stay.html">Stay</a>
+    </div>
+  </nav>
+
+  <!-- ── Page Hero ── -->
+  <header class="page-hero page-hero-dark">
+    <div class="page-hero-glow" aria-hidden="true"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-eyebrow">The Singing Field</span>
+      <h1>Listen</h1>
+    </div>
+  </header>
+
+  <!-- ── Music ── -->
+  <section class="section reveal">
+    <div class="section-inner narrow">
+      <h2>Music</h2>
+      <p class="lead">The first songs from the circle — with more to come.</p>
+      <p>The Singing Field album is on its way. For now, the first songs are out — songs born in the circle, songs that carry the field in them.</p>
+      <div class="spotify-wrap">
+        <iframe
+          style="border-radius:12px"
+          src="https://open.spotify.com/embed/album/55nY6A8MnwEffHbQ0SXjB8?utm_source=generator"
+          width="100%"
+          height="352"
+          frameBorder="0"
+          allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          title="The Singing Field on Spotify">
+        </iframe>
+      </div>
+      <a href="https://open.spotify.com/album/55nY6A8MnwEffHbQ0SXjB8"
+         target="_blank" rel="noopener noreferrer"
+         class="text-link">Open in Spotify →</a>
+    </div>
+  </section>
+
+  <!-- ── Songbook (living document) ── -->
+  <section class="section section-warm reveal">
+    <div class="section-inner narrow">
+      <h2 class="text-center">The Living Songbook</h2>
+      <p class="section-sub text-center">Lyrics &amp; chords, growing as new songs find me</p>
+
+      <article class="songbook-card">
+        <p class="songbook-greeting">Dear,</p>
+        <p>Here I'm sharing my songs with you. I feel so grateful for them. They moved through me, often leaving me surprised and touched by the melodies and words.</p>
+        <p>I am sharing them with the world, through singing, playing and praying together.</p>
+        <p>May you share them freely, with whoever wants to hear them.</p>
+        <p class="songbook-blessing">In service of the wellbeing of all life.</p>
+        <p class="signature">With love,<br>Emma</p>
+
+        <div class="songbook-action">
+          <a href="https://docs.google.com/document/d/11KmdtNfk9F770Fd1xB3FkahRubenWen52AwTLjxVy0U/edit?tab=t.0"
+             target="_blank" rel="noopener noreferrer"
+             class="btn btn-primary">Open the songbook</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── Videos ── -->
+  <section class="section reveal">
+    <div class="section-inner narrow">
+      <h2>Videos</h2>
+      <p class="lead">Songs from the circle, captured in the moment.</p>
+
+      <figure class="video-frame">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/gdf0JtOkRMI"
+                  title="The Singing Field"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"></iframe>
+        </div>
+      </figure>
+      <a href="https://www.youtube.com/watch?v=gdf0JtOkRMI"
+         target="_blank" rel="noopener noreferrer"
+         class="text-link">Open on YouTube →</a>
+
+      <div class="listen-platform">
+        <div class="platform-icon">
+          <img src="images/logo-mark.png" class="platform-bg" alt="" aria-hidden="true">
+          <svg class="platform-symbol" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7 2.5h10A4.5 4.5 0 0 1 21.5 7v10a4.5 4.5 0 0 1-4.5 4.5H7A4.5 4.5 0 0 1 2.5 17V7A4.5 4.5 0 0 1 7 2.5zm0 1.5A3 3 0 0 0 4 7v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm10 1.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-5 1.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 1.5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+          </svg>
+        </div>
+        <div class="platform-text">
+          <h3>More clips on Instagram</h3>
+          <p>Smaller moments from circles around the world. The most immediate window into the field.</p>
+          <a href="https://www.instagram.com/the_singing_field/"
+             target="_blank" rel="noopener noreferrer"
+             class="text-link">@the_singing_field →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-name">The Singing Field</p>
+      <nav class="footer-nav" aria-label="Footer links">
+        <a href="about.html">About</a>
+        <a href="listen.html">Listen</a>
+        <a href="stay.html">Stay</a>
+        <a href="https://www.instagram.com/the_singing_field/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://open.spotify.com/album/55nY6A8MnwEffHbQ0SXjB8" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="https://hipsy.nl/emma-van-den-boogert" target="_blank" rel="noopener noreferrer">Hipsy</a>
+      </nav>
+      <p class="footer-copy">© 2026 The Singing Field</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
