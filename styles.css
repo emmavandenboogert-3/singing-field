@@ -22,7 +22,7 @@
   --text-muted:   #7A5C38;
   --white:        #FDFAF5;
 
-  --font-serif: 'Fraunces', 'Cormorant Garant', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans:  'Lato', system-ui, sans-serif;
 
   --max-w:     1080px;
@@ -30,14 +30,6 @@
   --pad-x:     clamp(1.25rem, 5vw, 3rem);
   --section-y: clamp(5rem, 11vw, 9rem);
   --nav-h:     72px;
-}
-
-/* Fraunces variation tuning — softer, more soulful */
-h1, .hero-title, .page-hero h1, .stay-heading, .atmosphere-quote {
-  font-variation-settings: "opsz" 144, "SOFT" 50;
-}
-h2, h3, .lead, blockquote p {
-  font-variation-settings: "opsz" 36, "SOFT" 30;
 }
 
 /* ── Reset ── */
