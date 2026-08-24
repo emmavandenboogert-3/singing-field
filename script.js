@@ -27,24 +27,17 @@ const isFixedHero = document.body.hasAttribute('data-fixed-hero');
 const heroContent = document.querySelector('.hero-content');
 const heroScroll  = document.querySelector('.hero-scroll');
 
-let lastY = 0;
 let rafId = null;
 
 function updateScroll() {
   const y      = window.scrollY;
   const vh     = window.innerHeight;
 
-  // Nav: transparent → solid
-  if (isHome) {
-    nav.classList.toggle('scrolled', y > 60);
-  }
+  if (isHome) nav.classList.toggle('scrolled', y > 60);
 
-  // Hero parallax & fade (the magic)
   if (isFixedHero && heroContent) {
     const progress = Math.min(1, y / vh);
-    // Logo and tagline drift up slightly slower than scroll (parallax)
     heroContent.style.transform = `translateY(${-y * 0.35}px)`;
-    // Soft fade out as content covers the hero
     heroContent.style.opacity   = String(1 - progress * 0.85);
   }
 
@@ -56,11 +49,9 @@ function updateScroll() {
 }
 
 window.addEventListener('scroll', () => {
-  lastY = window.scrollY;
   if (!rafId) rafId = requestAnimationFrame(updateScroll);
 }, { passive: true });
 
-// Initial run (so nav state is correct on page load with scroll)
 updateScroll();
 
 // ── Reveal sections on scroll ──
@@ -75,7 +66,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ── Email signup → Kit.com ──
+// ── Email signup — shared logic for the Stay page form AND the pop-up ──
 //
 // TO CONNECT YOUR KIT.COM FORM:
 //   1. Log in to kit.com
@@ -85,26 +76,19 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 //
 const KIT_FORM_ID = 'YOUR_FORM_ID';
 
-const signupForm   = document.getElementById('signupForm');
-const formFeedback = document.getElementById('formFeedback');
-
-signupForm?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  const email = document.getElementById('emailInput').value.trim();
-  const btn   = signupForm.querySelector('button[type="submit"]');
+async function submitEmail({ email, buttonEl, feedbackEl, originalBtnText, onSuccess }) {
   if (!email) return;
 
   if (KIT_FORM_ID === 'YOUR_FORM_ID') {
-    formFeedback.textContent = 'Email signup coming very soon — follow on Instagram for updates.';
-    formFeedback.className   = 'form-feedback';
+    feedbackEl.textContent = 'Email signup coming very soon — follow on Instagram for updates.';
+    feedbackEl.className   = 'form-feedback';
     return;
   }
 
-  btn.disabled    = true;
-  btn.textContent = '…';
-  formFeedback.textContent = '';
-  formFeedback.className   = 'form-feedback';
+  buttonEl.disabled    = true;
+  buttonEl.textContent = '…';
+  feedbackEl.textContent = '';
+  feedbackEl.className   = 'form-feedback';
 
   try {
     const res = await fetch(
@@ -116,16 +100,137 @@ signupForm?.addEventListener('submit', async (e) => {
       }
     );
     if (res.ok || res.status === 200 || res.status === 201) {
-      formFeedback.textContent = 'Welcome to the field. ✦';
-      formFeedback.className   = 'form-feedback success';
-      signupForm.reset();
+      feedbackEl.textContent = 'Welcome to the field. ✦';
+      feedbackEl.className   = 'form-feedback success';
+      onSuccess?.();
     } else {
       throw new Error();
     }
   } catch {
-    formFeedback.textContent = 'Something went wrong — please try again.';
+    feedbackEl.textContent = 'Something went wrong — please try again.';
   } finally {
-    btn.disabled    = false;
-    btn.textContent = 'Join';
+    buttonEl.disabled    = false;
+    buttonEl.textContent = originalBtnText;
   }
+}
+
+// Stay page form
+const stayForm = document.getElementById('signupForm');
+stayForm?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('emailInput').value.trim();
+  await submitEmail({
+    email,
+    buttonEl:      stayForm.querySelector('button[type="submit"]'),
+    feedbackEl:    document.getElementById('formFeedback'),
+    originalBtnText: 'Join',
+    onSuccess:     () => stayForm.reset(),
+  });
 });
+
+// ── Email signup pop-up ──
+(function initPopup() {
+  const DISMISSED_KEY  = 'sf_popup_dismissed';
+  const SUBSCRIBED_KEY = 'sf_popup_subscribed';
+
+  // Don't show on the Stay page (redundant — it already has the form)
+  if (window.location.pathname.toLowerCase().includes('stay')) return;
+
+  // Don't show if already dismissed or already subscribed
+  if (localStorage.getItem(DISMISSED_KEY) || localStorage.getItem(SUBSCRIBED_KEY)) return;
+
+  let shown = false;
+
+  function showPopup() {
+    if (shown) return;
+    shown = true;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'popup-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-labelledby', 'popupTitle');
+    overlay.innerHTML = `
+      <div class="popup">
+        <button type="button" class="popup-close" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M6 6l12 12M18 6L6 18"/>
+          </svg>
+        </button>
+        <img src="images/logo-mark.png" class="popup-mark" alt="" aria-hidden="true">
+        <h2 id="popupTitle" class="popup-title">Stay in the field</h2>
+        <p class="popup-body">Occasional letters — when new circles land, when new songs are born, and notes from wherever we're singing in the world.</p>
+        <form class="signup-form popup-form" id="popupSignupForm" novalidate>
+          <div class="signup-row">
+            <label for="popupEmailInput" class="sr-only">Your email address</label>
+            <input type="email" id="popupEmailInput" name="email_address" placeholder="Your email address" required autocomplete="email">
+            <button type="submit" class="btn btn-primary">Yes, keep me posted</button>
+          </div>
+          <p class="form-feedback" id="popupFormFeedback" role="alert" aria-live="polite"></p>
+        </form>
+        <p class="popup-note">Written with love. — Emma</p>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+
+    // Force reflow so animation kicks off
+    requestAnimationFrame(() => overlay.classList.add('open'));
+
+    const closeBtn = overlay.querySelector('.popup-close');
+    const form     = overlay.querySelector('form');
+    const input    = overlay.querySelector('#popupEmailInput');
+    const feedback = overlay.querySelector('#popupFormFeedback');
+
+    closeBtn.focus({ preventScroll: true });
+
+    function close(reason = 'dismissed') {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      if (reason === 'subscribed') {
+        localStorage.setItem(SUBSCRIBED_KEY, Date.now());
+      } else {
+        localStorage.setItem(DISMISSED_KEY, Date.now());
+      }
+      setTimeout(() => overlay.remove(), 400);
+    }
+
+    closeBtn.addEventListener('click', () => close('dismissed'));
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) close('dismissed');
+    });
+    document.addEventListener('keydown', function onEsc(e) {
+      if (e.key === 'Escape') {
+        close('dismissed');
+        document.removeEventListener('keydown', onEsc);
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      await submitEmail({
+        email:           input.value.trim(),
+        buttonEl:        form.querySelector('button[type="submit"]'),
+        feedbackEl:      feedback,
+        originalBtnText: 'Yes, keep me posted',
+        onSuccess: () => {
+          form.reset();
+          setTimeout(() => close('subscribed'), 2500);
+        },
+      });
+    });
+  }
+
+  // Trigger: whichever comes first — 20 seconds on page, OR 40% page scroll
+  const timer = setTimeout(showPopup, 20000);
+
+  function onScroll() {
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    if (maxScroll <= 0) return;
+    if (window.scrollY / maxScroll > 0.4) {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', onScroll);
+      showPopup();
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
