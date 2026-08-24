@@ -158,7 +158,7 @@ stayForm?.addEventListener('submit', async (e) => {
         </button>
         <img src="images/logo-mark.png" class="popup-mark" alt="" aria-hidden="true">
         <h2 id="popupTitle" class="popup-title">A song from the field</h2>
-        <p class="popup-body">Occasional letters when new circles land and new songs come through. As a welcome — a private piano version of my song <em>Dancing in the Darkness</em>, recorded with my friend Manisha. Raw and intimate.</p>
+        <p class="popup-body">Occasional messages when new songs come through and updates where we play next. As a welcome I would love to share with you an intimate piano version of my song <em>Dancing in the Darkness</em>, recorded with my amazing friend Manisha, who has the most beautiful transmission in her music. I hope you enjoy it.</p>
         <form class="signup-form popup-form" id="popupSignupForm" novalidate>
           <div class="signup-row">
             <label for="popupEmailInput" class="sr-only">Your email address</label>
@@ -167,7 +167,7 @@ stayForm?.addEventListener('submit', async (e) => {
           </div>
           <p class="form-feedback" id="popupFormFeedback" role="alert" aria-live="polite"></p>
         </form>
-        <p class="popup-note">Written with love. — Emma</p>
+        <p class="popup-note">With love, Em</p>
       </div>
     `;
     document.body.appendChild(overlay);
