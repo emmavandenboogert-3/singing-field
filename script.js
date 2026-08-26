@@ -157,13 +157,13 @@ stayForm?.addEventListener('submit', async (e) => {
           </svg>
         </button>
         <img src="images/logo-mark.png" class="popup-mark" alt="" aria-hidden="true">
-        <h2 id="popupTitle" class="popup-title">A song from the field</h2>
-        <p class="popup-body">Occasional messages when new songs come through and updates where we play next. As a welcome I would love to share with you an intimate piano version of my song <em>Dancing in the Darkness</em>, recorded with my amazing friend Manisha, who has the most beautiful transmission in her music. I hope you enjoy it.</p>
+        <h2 id="popupTitle" class="popup-title">Stay in the field</h2>
+        <p class="popup-body">Occasional messages when new songs come through and updates where we play next.</p>
         <form class="signup-form popup-form" id="popupSignupForm" novalidate>
           <div class="signup-row">
             <label for="popupEmailInput" class="sr-only">Your email address</label>
             <input type="email" id="popupEmailInput" name="email_address" placeholder="Your email address" required autocomplete="email">
-            <button type="submit" class="btn btn-primary">Yes, send me the song</button>
+            <button type="submit" class="btn btn-primary">Yes, keep me posted</button>
           </div>
           <p class="form-feedback" id="popupFormFeedback" role="alert" aria-live="polite"></p>
         </form>
@@ -211,7 +211,7 @@ stayForm?.addEventListener('submit', async (e) => {
         email:           input.value.trim(),
         buttonEl:        form.querySelector('button[type="submit"]'),
         feedbackEl:      feedback,
-        originalBtnText: 'Yes, send me the song',
+        originalBtnText: 'Yes, keep me posted',
         onSuccess: () => {
           form.reset();
           setTimeout(() => close('subscribed'), 2500);
